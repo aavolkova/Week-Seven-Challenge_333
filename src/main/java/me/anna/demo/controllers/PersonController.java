@@ -162,12 +162,12 @@ public class PersonController {
         }
 
         if(countMatchedJobs == 0){
-            listOfJobsWithMatchedSkills = new ArrayList<Job>();
+            listOfJobsWithMatchedSkills = new ArrayList<>();
             model.addAttribute("collectionOfAllMatchedJobs", listOfJobsWithMatchedSkills);
         }
 
         if(countAllSkills == 0){
-            listOfJobsWithMatchedSkills = new ArrayList<Job>();
+            listOfJobsWithMatchedSkills = new ArrayList<>();
             model.addAttribute("collectionOfAllMatchedJobs", listOfJobsWithMatchedSkills);
         }
 
@@ -363,7 +363,7 @@ public class PersonController {
 //        Skills sPerson = skillsRepository.findBySkillTitleIn(myPersonSkills);
 //        System.out.println("Skill sPerson Title "+s.getSkillTitle());
 
-        // TODO
+        // Need to do:
         // Need to check here if the person already has this skill and if not add it to list
 
         model.addAttribute("skillList",skillsRepository.findAll());
@@ -570,12 +570,10 @@ public class PersonController {
     }
     // Attach existed Skill to Job
     @PostMapping("/addskilltojob")///{id}")// This is JOB ID
-    public String processAddSkillsToJob(//@PathVariable("skill") long skillID,
-                                     //   @PathVariable("id") long id, // This is JOB ID
+    public String processAddSkillsToJob(//@PathVariable("id") long id, // This is JOB ID
                                         @RequestParam(value = "skills") long skills,
                                         @RequestParam(value = "currentJob") long currentJob,
-                                    //@ModelAttribute("skills") Skills mySkill,
-                                    //    @ModelAttribute("currentJob") Job myJob,
+                                    //  @ModelAttribute("currentJob") Job myJob,
                                     Model model, Principal principal)
     {
         Person myPerson = personRepository.findByUsername(principal.getName());
@@ -690,7 +688,7 @@ public class PersonController {
     //////////////////////////////////////////////////////////////////////
     // ========================= PEOPLE SEARCH ===========================
     ///////////////////////////// BY FUlL NAME ///////////////////////////
-    //== Tried to make a search ignore case: without success: need TODO
+    //== Tried to make a search ignore case: without success: need to do
     @PostMapping("/peoplesearchbyname")
     public String processSearchPeopleByName(@RequestParam(value = "searchFirstName") String searchFirstName,
                                             @RequestParam(value = "searchLastName") String searchLastName,
